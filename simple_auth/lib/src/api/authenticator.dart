@@ -3,8 +3,8 @@ import "dart:async";
 import "package:simple_auth/simple_auth.dart";
 
 abstract class Authenticator {
-  String identifier;
-  String authCode;
+  String? identifier;
+  String? authCode;
   bool allowsCancel = true;
   String title = "Sign in";
   Completer<String> _completer = Completer<String>();
@@ -26,7 +26,7 @@ abstract class Authenticator {
   }
 
   ///Call this when you recieve the Auth token.
-  void foundAuthCode(String authCode) {
+  void foundAuthCode(String? authCode) {
     this.authCode = authCode;
     hasCompleted = true;
     _completer?.complete(authCode);

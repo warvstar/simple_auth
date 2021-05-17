@@ -47,9 +47,9 @@ class JsonConverter extends BodyConverterCodec {
     var body = request.body;
     if (body is List) {
       new List.from(
-          (body as List).map((f) => (f is JsonSerializable) ? f.toJson() : f));
+          body.map((f) => (f is JsonSerializable) ? f.toJson() : f));
       body = new List.from(
-          (body as List).map((f) => (f is JsonSerializable) ? f.toJson() : f));
+          body.map((f) => (f is JsonSerializable) ? f.toJson() : f));
     }
     if (request.body is JsonSerializable) {
       body = (request.body as JsonSerializable).toJson();

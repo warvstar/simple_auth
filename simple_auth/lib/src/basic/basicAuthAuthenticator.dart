@@ -6,7 +6,7 @@ import "dart:async";
 
 class BasicAuthAuthenticator extends Authenticator {
   String loginUrl;
-  http.Client client;
+  http.Client? client;
   BasicAuthAuthenticator(this.client, this.loginUrl);
 
   Future<bool> verifyCredentials(String username, String password) async {
