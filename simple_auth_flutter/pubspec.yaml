@@ -7,11 +7,14 @@ homepage: https://github.com/clancey/simple_auth
 environment:
     sdk: ">=2.7.0 <3.0.0"
     flutter: ">=1.10.0"
-
+publish_to: none
 dependencies:
   flutter:
     sdk: flutter
-  simple_auth: ^2.0.9
+  simple_auth:
+    git:
+      url: https://github.com/warvstar/simple_auth
+      path: simple_auth
 flutter:
   plugin:
     platforms:
