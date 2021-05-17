@@ -22,7 +22,7 @@ class OAuthAccount extends Account {
   String? refreshToken;
   int? expiresIn;
   DateTime? created;
-  List<String> scope = List<String>();
+  List<String> scope = [];
 
   @override
   bool isValid() {

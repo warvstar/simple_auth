@@ -33,8 +33,8 @@ class Api {
   }
 
   ///Used to decode the response body before returning from an API call
-  Future<Response<Value?>> decodeResponse<Value>(
-      Response<String?> response, Type responseType, bool responseIsList) async {
+  Future<Response<Value?>> decodeResponse<Value>(Response<String?> response,
+      Type responseType, bool responseIsList) async {
     final converted =
         await converter?.decode(response, responseType, responseIsList) ??
             response;
@@ -95,7 +95,8 @@ class Api {
     Response res = new Response<String>(response, response.body);
 
     if (res.isSuccessful && responseType != null) {
-      res = await decodeResponse<Value>(res as Response<String?>, responseType, responseIsList);
+      res = await decodeResponse<Value>(
+          res as Response<String?>, responseType, responseIsList);
     }
 
     res = await interceptResponse(res);

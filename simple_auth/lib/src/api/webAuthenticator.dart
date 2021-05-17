@@ -23,7 +23,8 @@ abstract class WebAuthenticator extends Authenticator {
 
   Uri? _redirectUri;
   String authCodeKey = "code";
-  List<String>? scope = List<String>();
+  // ignore: deprecated_member_use
+  List<String>? scope = [];
 
   /// This will check if the current URL has authentication tokens.
   bool checkUrl(Uri url) {
