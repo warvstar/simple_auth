@@ -22,19 +22,19 @@ abstract class Authenticator {
   ///Cancels the current authentication request.
   void cancel() {
     hasCompleted = true;
-    _completer?.completeError(CancelledException());
+    _completer.completeError(CancelledException());
   }
 
   ///Call this when you recieve the Auth token.
   void foundAuthCode(String? authCode) {
     this.authCode = authCode;
     hasCompleted = true;
-    _completer?.complete(authCode);
+    _completer.complete(authCode);
   }
 
   ///Cancels the request with an error message.
   void onError(String error) {
     hasCompleted = true;
-    _completer?.completeError(new Exception(error));
+    _completer.completeError(new Exception(error));
   }
 }

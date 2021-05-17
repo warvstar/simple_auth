@@ -29,8 +29,8 @@ abstract class WebAuthenticator extends Authenticator {
   /// This will check if the current URL has authentication tokens.
   bool checkUrl(Uri url) {
     try {
-      if (url?.host != _redirectUri!.host) return false;
-      if (url?.query?.isEmpty ?? true) return false;
+      if (url.host != _redirectUri!.host) return false;
+      if (url.query.isEmpty == true) return false;
       if (!url.queryParameters.containsKey(authCodeKey)) return false;
       var code = url.queryParameters[authCodeKey];
       foundAuthCode(code);
