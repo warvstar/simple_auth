@@ -13,10 +13,10 @@ class YoutubeApi extends GoogleApiKeyApi implements YouTubeApiDefinition {
           '419855213697-uq56vcune334omgqi51ou7jg08i3dnb1.apps.googleusercontent.com',
       String clientSecret: 'UwQ8aUXKDpqPzH0gpJnSij3i',
       String redirectUrl: 'redirecturl',
-      List<String> scopes,
-      http.Client client,
-      Converter converter,
-      AuthStorage authStorage})
+      List<String>? scopes,
+      http.Client? client,
+      Converter? converter,
+      AuthStorage? authStorage})
       : super(identifier, apiKey, clientId, redirectUrl,
             clientSecret: clientSecret,
             scopes: scopes,
@@ -47,7 +47,7 @@ class YoutubeApi extends GoogleApiKeyApi implements YouTubeApiDefinition {
       Response<String> response, Type responseType, bool responseIsList) async {
     var converted =
         await converter?.decode(response, responseType, responseIsList);
-    if (converted != null) return converted;
+    if (converted != null) return converted as Response<Value>;
     if (responseType == YoutubeSearchListResult) {
       final d =
           await jsonConverter.decode(response, responseType, responseIsList);

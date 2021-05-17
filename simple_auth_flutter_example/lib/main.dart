@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -83,7 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
         "public_repo",
       ]);
 
-  final simpleAuth.GoogleApi googleApi = new simpleAuth.GoogleApi("google",
+  final simpleAuth.GoogleApi googleApi = new simpleAuth.GoogleApi(
+      "google",
       "992461286651-k3tsbcreniknqptanrugsetiimt0lkvo.apps.googleusercontent.com",
       "redirecturl",
       clientSecret: "avrYAIxweNZwcHpsBlIzTp04",
@@ -186,7 +187,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ListTile(
             leading: Icon(Icons.launch),
-
             title: Text('Search for "Flutter"'),
             onTap: () async {
               try {
@@ -198,7 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
               }
             },
           ),
-          ListTile( 
+          ListTile(
             leading: Icon(Icons.delete),
             title: Text('Logout'),
             onTap: () {
