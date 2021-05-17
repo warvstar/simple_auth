@@ -41,8 +41,14 @@ class DropboxApi extends OAuthApi {
 
 class DropboxAuthenticator extends OAuthAuthenticator {
   late Uri redirectUri;
-  DropboxAuthenticator(String? identifier, String? clientId, String? clientSecret,
-      String? tokenUrl, String? baseUrl, String redirectUrl, List<String>? scopes)
+  DropboxAuthenticator(
+      String? identifier,
+      String? clientId,
+      String? clientSecret,
+      String? tokenUrl,
+      String? baseUrl,
+      String redirectUrl,
+      List<String>? scopes)
       : super(identifier, clientId, clientSecret, tokenUrl, baseUrl,
             redirectUrl) {
     authCodeKey = "access_token";
@@ -63,8 +69,8 @@ class DropboxAuthenticator extends OAuthAuthenticator {
         url = url.replace(query: url.fragment);
       }
 
-      if (url?.host != redirectUri.host) return false;
-      if (url?.query?.isEmpty ?? true) return false;
+      if (url.host != redirectUri.host) return false;
+      if (url.query.isEmpty == true) return false;
       if (!url.queryParameters.containsKey(authCodeKey)) return false;
       var code = url.queryParameters[authCodeKey];
       if (code?.isEmpty ?? true) return false;

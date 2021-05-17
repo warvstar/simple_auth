@@ -64,13 +64,14 @@ class OAuthApi extends AuthenticatedApi {
         ((account.refreshToken?.isNotEmpty ?? false) ||
             (account.expiresIn != null && account.expiresIn! <= 0))) {
       var valid = account.isValid();
-      if (!valid || forceRefresh ?? false) {
+      if (!valid || forceRefresh == false) {
         //If there is no interent, give them the current expired account
         if (!await pingUrl(tokenUrl!)) {
           return account;
         }
         if (await refreshAccount(account))
-          account = currentOauthAccount ?? loadAccountFromCache<OAuthAccount>() as OAuthAccount;
+          account = currentOauthAccount ??
+              loadAccountFromCache<OAuthAccount>() as OAuthAccount;
       }
       if (account.isValid()) {
         saveAccountToCache(account);
@@ -89,7 +90,7 @@ class OAuthApi extends AuthenticatedApi {
       throw new Exception(
           "You are required to implement the 'showAuthenticator or sharedShowAuthenticator");
     var token = await _authenticator.getAuthCode();
-    if (token?.isEmpty ?? true) {
+    if (token.isEmpty == true) {
       throw new Exception("Null Token");
     }
     account = await getAccountFromAuthCode(_authenticator);
@@ -136,7 +137,7 @@ class OAuthApi extends AuthenticatedApi {
   @override
   Future<bool> refreshAccount(Account _account) async {
     try {
-      var account = _account as OAuthAccount;
+      var account = _account as OAuthAccount?;
       if (account == null) throw new Exception("Invalid Account");
       var postData = await getRefreshTokenPostData(account);
 
@@ -148,7 +149,7 @@ class OAuthApi extends AuthenticatedApi {
           body: postData);
       var map = convert.json.decode(resp.body);
       var result = OAuthResponse.fromJson(map);
-      if (result?.error?.isNotEmpty ?? false) {
+      if (result.error?.isNotEmpty == false) {
         if ((account.refreshToken?.isEmpty ?? true) ||
             result.error == "invalid_grant" ||
             (result.errorDescription?.contains("revoked") ?? false)) {

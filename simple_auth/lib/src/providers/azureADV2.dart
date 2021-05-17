@@ -69,9 +69,9 @@ class AzureADV2Authenticator extends OAuthAuthenticator {
   bool checkUrl(Uri url) {
     Uri _redirectUri = Uri.parse(redirectUrl!);
     try {
-      if (url?.host != _redirectUri.host) return false;
+      if (url.host != _redirectUri.host) return false;
       var params = splitFragment(url.fragment);
-      if (params.isEmpty ?? true) return false;
+      if (params.isEmpty == true) return false;
       if (!params.containsKey(authCodeKey)) return false;
       var code = params[authCodeKey];
       foundAuthCode(code);

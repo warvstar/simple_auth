@@ -58,7 +58,7 @@ class Request {
 
   http.BaseRequest toHttpRequest(String? baseUrl) {
     var pathUrl = Uri.tryParse(url);
-    if (pathUrl?.scheme?.isEmpty ?? true) {
+    if (pathUrl?.scheme.isEmpty ?? true) {
       pathUrl = Uri.parse("$baseUrl/${url}");
     }
     var cleanedParams = parameters;

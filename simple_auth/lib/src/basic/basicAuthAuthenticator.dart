@@ -11,8 +11,8 @@ class BasicAuthAuthenticator extends Authenticator {
 
   Future<bool> verifyCredentials(String username, String password) async {
     try {
-      if (username?.isEmpty ?? true) throw new Exception("Invalid Username");
-      if (password?.isEmpty ?? true) throw new Exception("Invalid Password");
+      if (username.isEmpty == true) throw new Exception("Invalid Username");
+      if (password.isEmpty == true) throw new Exception("Invalid Password");
       var key = base64.encode(utf8.encode("$username:$password"));
       var req = await http
           .get(Uri.parse(loginUrl), headers: {"Authorization": "Basic $key"});
